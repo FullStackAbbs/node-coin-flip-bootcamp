@@ -1,27 +1,23 @@
-// A House Gardner Program
-let heads = document.getElementById('heads');
-let tails = document.getElementById('tails');
-let playerChoice;
-heads.addEventListener('click',chooseHead)
+let buttonRock = document.querySelector('#rock')
+let buttonScissors = document.querySelector('#scissors')
+let buttonPaper = document.querySelector('#paper')
+let buttonSpock = document.querySelector('#spock')
+let buttonLizard = document.querySelector('#lizard')
 
-tails.addEventListener('click',chooseTails)
 
-function chooseHead(){
-  playerChoice= 'heads';
-  checkCoinFlipWinner(playerChoice);
-}
+buttonRock.addEventListener('click',playerSelectRock)
+// add the playerChoice = "RPSLS"
 
-function chooseTails(){
-  playerChoice= 'tails';
-  checkCoinFlipWinner(playerChoice);
-}
-function checkCoinFlipWinner(choice){
+
+
+
+function checkWinner(choice){
   fetch(`/calculateWinner?playerChoice=${choice}`)
     .then(response => response.json())
     .then((data) => {
       console.log(data);
       console.log(playerChoice);
-      document.getElementById('displayChoice').innerHTML = playerChoice
+      // document.getElementById('displayChoice').innerHTML = playerChoice
       if (data === true){
         document.getElementById('checkWin').innerHTML = 'You Win'
       } else if (data === false) {
